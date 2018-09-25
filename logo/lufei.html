@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>路飞logo</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      perspective: 1000px;
+    }
+
+    .box {
+      width: 400px;
+      height: 400px;
+      border: 4px solid #666;
+      border-radius: 20px;
+      margin: 100px auto;
+      position: relative;
+
+    }
+
+    .pa {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .bottom {
+      width: 286px;
+      height: 286px;
+      /* background-color: #ccc; */
+      border-radius: 50%;
+      animation-name: ain_oneBox;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-play-state: paused;
+    }
+
+    .circle {
+      width: 270px;
+      height: 270px;
+      background-color: #000;
+      border-radius: 50%;
+    }
+
+    .face {
+      width: 180px;
+      height: 180px;
+      /* background-color: #fff; */
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 2;
+      border: 4px solid #000;
+    }
+
+    .eye1,
+    .eye2 {
+      width: 62px;
+      height: 62px;
+      background-color: #000;
+      border-radius: 50%;
+      animation-name: ain_eye;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-play-state: paused;
+      /* animation-timing-function: linear; */
+    }
+
+    .eye1 {
+      transform: translate(-115%, -12%);
+    }
+
+    .eye2 {
+      transform: translate(15%, -12%);
+    }
+
+    .nose {
+      width: 24px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 50%;
+      transform: translate(-50%, 218%);
+    }
+
+    .hairline {
+      width: 536px;
+      height: 510px;
+      border: 5px solid #000;
+      background-color: #fff;
+      border-radius: 50%;
+      transform: translate(-50%, -4px);
+      z-index: 2;
+    }
+
+    .cap {
+      width: 306px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: #fdce1c;
+      /* border: 4px solid #000; */
+      /* opacity: .5; */
+      transform: translate(-50%, -134%);
+      overflow: hidden;
+      z-index: 6;
+    }
+
+    .cap2 {
+      width: 306px;
+      height: 34px;
+      border-radius: 50%;
+      /* background-color: #FFF; */
+      border: 4px solid #000;
+      /* opacity: .5; */
+      /* overflow: hidden; */
+      z-index: 1;
+    }
+
+    .haed {
+      width: 180px;
+      height: 180px;
+      background-color: #fdce1c;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .haedBgc {
+      width: 180px;
+      height: 180px;
+      background-color: #fff;
+      transform: translate(0%, 22%);
+    }
+
+    .hood {
+      width: 200px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      background-color: #fe0301;
+      transform: translate(-50%, -134%);
+    }
+
+    .mouth {
+      width: 95px;
+      height: 158px;
+      /* border: 1px solid #666; */
+      position: relative;
+      z-index: 1;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, 74px);
+      overflow: hidden;
+    }
+
+    .mouthUp {
+      width: 78px;
+      height: 70px;
+      border: 1px solid #666;
+      border-bottom: 75px solid #fff;
+      border-top: 0px solid rgba(0, 0, 0, 0);
+      border-left: 20px solid rgba(0, 0, 0, 0);
+      border-right: 20px solid rgba(0, 0, 0, 0);
+      bottom: 0px;
+      transform: translate(-50%, 40px);
+      z-index: 2;
+      /* overflow: hidden; */
+    }
+
+    .toothUp {
+      width: 4px;
+      height: 21px;
+      background-color: #000;
+      /* float: left; */
+      position: absolute;
+      top: 50px;
+    }
+
+
+    .mouthUp>.toothUp:nth-child(1) {
+      left: -4px;
+      transform-origin: 0 0;
+      transform: rotate(10deg);
+    }
+
+    .mouthUp>.toothUp:nth-child(2) {
+      left: 11px;
+      top: 52px;
+      transform-origin: 0 0;
+      transform: rotate(2deg);
+    }
+
+    .mouthUp>.toothUp:nth-child(3) {
+      left: 26px;
+      top: 52px;
+      transform-origin: 0 0;
+      transform: rotate(-2deg);
+    }
+
+    .mouthUp>.toothUp:nth-child(4) {
+      left: 41px;
+      top: 50px;
+      transform-origin: 0 0;
+      transform: rotate(-10deg);
+    }
+
+    .mouthUp>.toothUp:nth-child(5) {
+      left: -15px;
+      transform-origin: 0 0;
+      transform: rotate(17deg);
+    }
+
+    .mouthUp>.toothUp:nth-child(6) {
+      left: 51px;
+      transform-origin: 0 0;
+      transform: rotate(-17deg);
+    }
+
+    .mouthDown {
+      width: 102px;
+      height: 70px;
+      border-bottom: 40px solid #fff;
+      border-top: 0px solid rgba(0, 0, 0, 0);
+      border-left: 12px solid rgba(0, 0, 0, 0);
+      border-right: 12px solid rgba(0, 0, 0, 0);
+      bottom: 0;
+      transform: translate(-50%, 75px);
+
+
+    }
+
+    .toothDown {
+      width: 4px;
+      height: 26px;
+      background-color: #000;
+      /* float: left; */
+      position: absolute;
+    }
+
+    .mouthDown>.toothDown:nth-child(1) {
+      top: 29px;
+      left: -4px;
+      transform: rotate(16deg);
+    }
+
+    .mouthDown>.toothDown:nth-child(2) {
+      top: 36px;
+      left: 18px;
+      transform: rotate(9deg);
+    }
+
+    .mouthDown>.toothDown:nth-child(3) {
+      top: 35px;
+      left: 38px;
+      transform: rotate(-2deg);
+    }
+
+    .mouthDown>.toothDown:nth-child(4) {
+      top: 34px;
+      left: 59px;
+      transform: rotate(-10deg);
+    }
+
+    .mouthDown>.toothDown:nth-child(5) {
+      top: 29px;
+      left: 80px;
+      transform: rotate(-16deg);
+    }
+
+    .yuan {
+      width: 232px;
+      height: 232px;
+      /* background-color: #fff; */
+      border-radius: 50%;
+      border: 4px solid #000;
+      transform: translate(-50%, -275px);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .yuan2 {
+      width: 141px;
+      height: 218px;
+      /* background-color: #fff; */
+      border-radius: 50%;
+      border: 4px solid #000;
+      transform: translate(-50%, -216px);
+      /* background-color: #fff; */
+      overflow: hidden;
+      animation-name: ain_mouth;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-play-state: paused;
+      /* animation-timing-function: linear; */
+    }
+
+    .yuan3 {
+      width: 280px;
+      height: 280px;
+      /* background-color: #fff; */
+      border-radius: 50%;
+      border: 3px solid #000;
+      transform: translate(-50%, -193px);
+      overflow: hidden;
+    }
+
+    .yuan4 {
+      width: 235px;
+      height: 235px;
+      /* background-color: #fff; */
+      border-radius: 50%;
+      border: 10px solid #000;
+      transform: translate(-50%, -210px);
+      /* overflow: hidden; */
+    }
+
+    .boneBox {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      animation-name: ain_boneBox;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-play-state: paused;
+      /* animation-timing-function: linear; */
+    }
+
+    .bone1,
+    .bone2 {
+      width: 30px;
+      height: 390px;
+      background-color: #fff;
+      position: relative;
+      border: 4px solid #000;
+      border-top: none;
+      border-bottom: none;
+    }
+
+    .bone1 {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .bone2 {
+      transform: translate(-50%, -150%) rotate(-45deg);
+    }
+
+    .joint {
+      width: 34px;
+      height: 36px;
+      background-color: #fff;
+    }
+
+    .bone1>.joint:nth-child(1) {
+      top: 0;
+      left: -10%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-right: none;
+      /* 左上  右上 左下 右下 */
+      border-radius: 42% 40% 20% 60%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .bone1>.joint:nth-child(2) {
+      top: 0;
+      left: 110%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-left: none;
+      border-radius: 42% 40% 60% 20%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .bone1>.joint:nth-child(3) {
+      top: 100%;
+      left: -10%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-left: none;
+      border-radius: 42% 40% 60% 20%;
+      transform: translate(-50%, -50%) rotate(-225deg);
+    }
+
+    .bone1>.joint:nth-child(4) {
+      top: 100%;
+      left: 110%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-right: none;
+      /* 左上  右上 左下 右下 */
+      border-radius: 42% 40% 20% 60%;
+      transform: translate(-50%, -50%) rotate(225deg);
+    }
+
+    .bone2>.joint:nth-child(1) {
+      top: 0;
+      left: -10%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-right: none;
+      border-radius: 42% 40% 20% 60%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .bone2>.joint:nth-child(2) {
+      top: 0;
+      left: 110%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-left: none;
+      border-radius: 42% 40% 60% 20%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .bone2>.joint:nth-child(3) {
+      top: 100%;
+      left: -10%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-left: none;
+      border-radius: 42% 40% 60% 20%;
+      transform: translate(-50%, -50%) rotate(-225deg);
+    }
+
+    .bone2>.joint:nth-child(4) {
+      top: 100%;
+      left: 110%;
+      border: 4px solid #000;
+      border-top: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-right: none;
+      border-radius: 42% 40% 20% 60%;
+      transform: translate(-50%, -50%) rotate(225deg);
+    }
+
+    .jawBox {
+      width: 150px;
+      height: 60px;
+      /* background-color: #fff; */
+      /* border-radius: 50%; */
+      border: 3px solid red;
+      transform: translate(-50%, 26px);
+      z-index: 0;
+      /* overflow: hidden; */
+    }
+
+    .jaw {
+      width: 141px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 0% 0% 50% 50%;
+      /* border: 4px; */
+      transform: translate(-50%, 160%);
+    }
+
+    @keyframes ain_boneBox {
+      0% {
+        transform: rotate(0deg) translateZ(0px);
+      }
+      10% {
+        transform: rotate(0deg) translateZ(260px);
+      }
+      20% {
+        transform: rotate(0deg) translateZ(200px);
+      }
+      30% {
+        transform: rotate(720deg) translateZ(200px);
+      }
+      75% {
+        transform: rotate(0deg) translateZ(0px);
+      }
+      100% {
+        transform: rotate(0deg) translateZ(0px);
+      }
+    }
+
+    @keyframes ain_eye {
+      0% {
+        height: 62px;
+      }
+      10% {
+        height: 74px;
+      }
+      20% {
+        height: 54px;
+      }
+      35% {
+        height: 62px;
+      }
+      75% {
+        height: 62px;
+      }
+      100% {
+        height: 62px;
+      }
+    }
+
+    @keyframes ain_mouth {
+      0% {
+        transform: translate(-50%, -216px);
+      }
+      10% {
+        transform: translate(-50%, -192px);
+      }
+      14% {
+        transform: translate(-50%, -224px);
+      }
+      35% {
+        transform: translate(-50%, -216px);
+      }
+      75% {
+        transform: translate(-50%, -216px);
+      }
+      100% {
+        transform: translate(-50%, -216px);
+      }
+    }
+
+    @keyframes ain_oneBox {
+      0% {
+        transform: translate(-50%, -50%) translateZ(0px);
+      }
+      10% {
+        transform: translate(-50%, -50%) translateZ(200px);
+      }
+      20% {
+        transform: translate(-50%, -50%) translateZ(150px);
+      }
+      35% {
+        transform: translate(-50%, -50%) translateZ(200px);
+      }
+      75% {
+        transform: translate(-50%, -50%) translateZ(0px);
+      }
+      100% {
+        transform: translate(-50%, -50%) translateZ(0px);
+      }
+    }
+
+    .box:hover .boneBox,
+    .box:hover .bottom,
+    .box:hover .eye1,
+    .box:hover .eye2,
+    .box:hover .yuan2 {
+      animation-play-state: running;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="boneBox">
+      <div class="bone1 pa">
+        <div class="joint pa"></div>
+        <div class="joint pa"></div>
+        <div class="joint pa"></div>
+        <div class="joint pa"></div>
+      </div>
+      <div class="bone2 pa">
+        <div class="joint pa"></div>
+        <div class="joint pa"></div>
+        <div class="joint pa"></div>
+        <div class="joint pa"></div>
+      </div>
+    </div>
+    <div class="bottom pa">
+      <div class="circle pa"></div>
+      <div class="haed pa">
+        <div class="haedBgc"></div>
+        <div class="hood pa"></div>
+      </div>
+      <div class="face pa">
+        <div class="eye1 pa"></div>
+        <div class="eye2 pa"></div>
+        <div class="nose pa"></div>
+      </div>
+      <div class="cap pa">
+        <div class="cap2 pa"></div>
+        <div class="hairline pa"></div>
+      </div>
+      <div class="mouth">
+        <div class="yuan2 pa">
+          <div class="jaw pa"></div>
+          <div class="yuan3 pa">
+            <div class="mouthDown pa">
+              <div class="toothDown"></div>
+              <div class="toothDown"></div>
+              <div class="toothDown"></div>
+              <div class="toothDown"></div>
+              <div class="toothDown"></div>
+              <div class="yuan4 pa">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="mouthUp1 pa"></div> -->
+        <div class="yuan pa">
+          <div class="mouthUp pa">
+            <div class="toothUp"></div>
+            <div class="toothUp"></div>
+            <div class="toothUp"></div>
+            <div class="toothUp"></div>
+            <div class="toothUp"></div>
+            <div class="toothUp"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
