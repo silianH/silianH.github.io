@@ -5,13 +5,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Template • TodoMVC</title>
-	<link rel="stylesheet" href="/node_modules/todomvc-common/base.css">
-	<link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css">
-	<link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+	<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+	<!-- CSS overrides - remove if you don't need it -->
+	<link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
-	<div id="app" v-cloak>
+	<div id="app">
+
+
 		<section class="todoapp">
 			<header class="header">
 				<h1>todos</h1>
@@ -20,10 +23,29 @@
 					<input class="new-todo" placeholder="What needs to be done?" autofocus v-model:value="newText">
 				</form>
 			</header>
+			<!-- This section should be hidden by default and shown when there are todos -->
 			<section class="main">
 				<input id="toggle-all" class="toggle-all" type="checkbox" v-model='toggleAll'>
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
+					<!-- These are here just to show the structure of the list items -->
+					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+					<!-- <li class="completed">
+						<div class="view">
+							<input class="toggle" type="checkbox" checked>
+							<label>Taste JavaScript</label>
+							<button class="destroy"></button>
+						</div>
+						<input class="edit" value="Create a TodoMVC template">
+					</li>
+					<li>
+						<div class="view">
+							<input class="toggle" type="checkbox">
+							<label>Buy a unicorn</label>
+							<button class="destroy"></button>
+						</div>
+						<input class="edit" value="Rule the web">
+					</li> -->
 					<li v-for='(value,index) in all' :class="[{completed:value.isCompleted},{editing:newEidt===index}]" v-show='isShow(value)'>
 						<div class="view">
 							<!-- v-model='value.isCompleted'  -->
@@ -37,8 +59,11 @@
 					</li>
 				</ul>
 			</section>
+			<!-- This footer should hidden by default and shown when there are todos -->
 			<footer class="footer">
+				<!-- This should be `0 items left` by default -->
 				<span class="todo-count"><strong>{{all.filter(v=>{return !v.isCompleted}).length}}</strong> item left</span>
+				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
 						<!-- 全部 -->
@@ -62,8 +87,91 @@
 	</div>
 
 	<!-- <script src="node_modules/todomvc-common/base.js"></script> -->
-	<script src="/js/vue2.js"></script>
-	<script src="/js/app.js"></script>
+	<script src="./js/vue2.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				all: [],
+				newCompleted: '',
+				newEidt: '',
+				newText: '',
+				toggleList: 'all'
+			},
+			methods: {
+				addSubmit() {
+					// console.log(123);
+					if (this.newText.trim() == '') {
+						this.newText = '';
+						alert('不能为空');
+						return;
+					}
+					this.all.push({
+						task: this.newText,
+						isCompleted: false
+					})
+					this.newText = '';
+				},
+				isShow(value) {
+					switch (this.toggleList) {
+						case 'all':
+							return true;
+							break;
+						case 'active':
+							// 未完成
+							return !value.isCompleted;
+							break;
+						case 'completed':
+							return value.isCompleted;
+							break;
+					}
+				},
+				clearCompleted() {
+					this.all = this.all.filter(value => {
+						return !value.isCompleted;
+					})
+				}
+			},
+			computed: {
+				// toggleAll() {
+				// 	// console.log(1);
+				// 	var tmp = this.all.filter(value => {
+				// 		// console.log(!value.isCompleted);
+				// 		return !value.isCompleted;
+				// 	})
+				// 	// console.log(tmp);
+				// 	return tmp.length == 0 ? true : false
+				// }
+				toggleAll: {
+					get() {
+						var tmp = this.all.filter(value => {
+							// console.log(!value.isCompleted);
+							return !value.isCompleted;
+						})
+						// console.log(tmp);
+						return tmp.length == 0 ? true : false
+					},
+					set(newCompleted) {
+						console.log(newCompleted);
+						for (var i = 0; i < this.all.length; i++) {
+							this.all[i].isCompleted = newCompleted;
+						}
+					}
+				}
+			},
+			mounted() {
+				// console.log(JSON.parse(localStorage.getItem("todosList")));
+				JSON.parse(localStorage.getItem("todosList")) ? this.all = JSON.parse(localStorage.getItem("todosList")) : [];
+			},
+			// 更新
+			updated() {
+				// console.log(this.all);
+				localStorage.setItem('todosList', JSON.stringify(this.all));
+			}
+		})
+
+	</script>
+	<script src="js/app.js"></script>
 </body>
 
 </html>
