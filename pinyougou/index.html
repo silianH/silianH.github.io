@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>品优购-购你想要</title>
+  <link rel="stylesheet" href="/lib/mui/css/mui.css">
+  <link rel="stylesheet" href="/lib/font/iconfont.css">
+  <link rel="stylesheet" href="/css/comomon.css">
+  <link rel="stylesheet" href="/css/index.css">
+
+</head>
+
+<body>
+  <header class="pyg_header">
+    <div class="mui-input-row mui-search">
+      <input type="search" class="mui-input-clear" placeholder="">
+    </div>
+    <!-- 加 show 显示 加载层 -->
+    <div class="mask">
+      <div class="loading">
+        <img src="/image/loading-0.gif" alt="">
+      </div>
+    </div>
+  </header>
+  <div class="pyg_view">
+    <div class="index_sliderHead">
+      <div class="mui-slider">
+        <!-- 占坑 sliderTemplate -->
+      </div>
+    </div>
+    <nav class="index_nav">
+      <!-- catitemsTemplate 占坑 -->
+    </nav>
+    <div class="index_goodsList">
+      <div class="goods">
+        <!-- 占坑 goodslistTemplate -->
+      </div>
+    </div>
+  </div>
+  <footer class="pyg_footer">
+    <a href="index.html">
+      <span class="iconfont icon-fangzi"></span>
+      <span class="link_name">首页</span>
+    </a>
+    <a href="/pages/category.html">
+      <span class="iconfont icon-liebiao"></span>
+      <span class="link_name">分类</span>
+    </a>
+    <a href="/pages/cart.html">
+      <span class="iconfont icon-gouwuche"></span>
+      <span class="link_name">购物车</span>
+    </a>
+    <a href="/pages/me.html">
+      <span class="iconfont icon-wode"></span>
+      <span class="link_name">用户</span>
+    </a>
+  </footer>
+
+</body>
+<script type="text/template" id="sliderTemplate">
+  <div class="mui-slider">
+    <div class="mui-slider-group mui-slider-loop">
+      <!--支持循环，需要重复图片节点-->
+      <div class="mui-slider-item mui-slider-item-duplicate">
+        <a href="#">
+          <img src="{{data[data.length-1].image_src}}" />
+        </a>
+      </div>
+      {{each data value index}}
+      <div class="mui-slider-item">
+        <a href="#">
+          <img src="{{value.image_src}}" />
+        </a>
+      </div>
+      {{/each}}
+      <!--支持循环，需要重复图片节点-->
+      <div class="mui-slider-item mui-slider-item-duplicate">
+        <a href="#">
+          <img src="{{data[0].image_src}}" />
+        </a>
+      </div>
+    </div>
+    <div class="mui-slider-indicator">
+      {{each data value index}} {{if index==0}}
+      <div class="mui-indicator mui-active"></div>
+      {{/if}} {{if index!=0}}
+      <div class="mui-indicator"></div>
+      {{/if}} {{/each}}
+    </div>
+  </div>
+</script>
+<script type="text/template" id="catitemsTemplate">
+  {{each data value}}
+  <a href="{{value.navigator_url
+  }}.html">
+    <img src="{{value.image_src}}" alt="">
+  </a>
+  {{/each}}
+</script>
+<script type="text/template" id="goodslistTemplate">
+  {{each data value index}}
+  <div class="goods">
+    <div class="goodsTitle">
+      <img src="{{value.group_img}}" alt="">
+    </div>
+    <div class="goodsContent">
+      <ul>
+        {{each value.goods values}}
+        <li>
+          <a href="/pages/goods_detail.html?goods_id={{values.goods_id}}" class="goodsMessage">
+            <div class="messageImg">
+              <img src="{{values.goods_small_logo}}" alt="">
+            </div>
+            <p class="goods_name">{{values.goods_name}}</p>
+            <p class="goods_price">
+              <span>￥</span>{{values.goods_price}}
+            </p>
+          </a>
+          <div class="likeness">
+            <a href="javascript:;" class="mui-btn mui-btn-primary">找相似</a>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  {{/each}}
+</script>
+<script src="/lib/mui/js/mui.js"></script>
+<script src="/lib/zepto/zepto.js"></script>
+<script src="/lib/arttemplate/template-web.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/index.js"></script>
+
+</html>
